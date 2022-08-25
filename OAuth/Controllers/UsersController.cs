@@ -19,7 +19,7 @@ namespace OAuth.Controllers
         }
 
         [HttpGet]
-        public List<string> Get()
+        public List<string> GetAll()
         {
             var users = new List<string>
             {
@@ -35,6 +35,7 @@ namespace OAuth.Controllers
         [Route("authenticate")]
         public IActionResult Authenticate(Users usersData)
         {
+
             var token = _jWTManagerRepository.Authenticate(usersData);
             if (token == null)
             {
@@ -42,5 +43,7 @@ namespace OAuth.Controllers
             }
             return Ok(token);
         }
+
+        
     }
 }

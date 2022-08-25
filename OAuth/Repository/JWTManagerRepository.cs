@@ -36,11 +36,11 @@ namespace OAuth.Repository
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var tokenKey = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
 			List<Claim> claims = new();
-			foreach (var role in users.Roles)
-			{
-				claims.Add(new Claim(ClaimTypes.Role, role));
-			}
-			claims.Add(new Claim(ClaimTypes.Name, users.Name));
+            foreach (var role in users.Roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
+            }
+            claims.Add(new Claim(ClaimTypes.Name, users.Name));
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 
